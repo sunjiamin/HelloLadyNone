@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/listPreferredItemHeight"
-    android:background="?attr/selectableItemBackground">
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical">
 
     <View
         android:layout_width="match_parent"
@@ -26,5 +27,11 @@
         android:layout_height="1dp"
         android:layout_gravity="bottom"
         android:background="@android:color/white"/>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_l_rec">
 
-</FrameLayout>
+    </ListView>
+
+</LinearLayout>

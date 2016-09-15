@@ -13,15 +13,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.sun.hellolady.R;
+import com.sun.hellolady.demo.APITestActivity;
+import com.sun.hellolady.demo.Charts.ChartDemoActivity;
+import com.sun.hellolady.demo.CiecleProgressBarActivity;
+import com.sun.hellolady.demo.IM.ImDemoActivity;
 import com.sun.hellolady.demo.Loading.LoadingActivity;
 import com.sun.hellolady.demo.MeiNv.Main3Activity;
 import com.sun.hellolady.demo.PhotoView.PicassoSampleActivity;
 import com.sun.hellolady.demo.PhotoView.RotationSampleActivity;
 import com.sun.hellolady.demo.PhotoView.SimpleSampleActivity;
 import com.sun.hellolady.demo.PhotoView.ViewPagerActivity;
+import com.sun.hellolady.demo.Recycler.RecyclerActivity;
+import com.sun.hellolady.demo.SlidingPanel.SlidingPanelActivity;
+import com.sun.hellolady.demo.SlidingPanel.slidingdrawer;
 import com.support.util.common.T;
 import com.support.util.netstatus.NetChangeObserver;
 import com.support.util.netstatus.NetStateReceiver;
@@ -36,7 +45,14 @@ public class LauncherActivity extends AppCompatActivity {
             "Picasso Sample",
             "MainActiity",
             "美女",
-            "Loading"};
+            "Loading",
+            "APITest",
+            "LineChart",
+            "IM",
+            "RecyclerActivity",
+    "CiecleProgressBarActivity",
+    "SlidingPanelActivity",
+            "slidingdrawer"};
 
     NetChangeObserver mNetChangeObserver;
 
@@ -131,6 +147,30 @@ public class LauncherActivity extends AppCompatActivity {
                         case 6:
                             c = LoadingActivity.class;
                             break;
+                        case 7:
+                            c = APITestActivity.class;
+                            break;
+                        case 8:
+                            c = ChartDemoActivity.class;
+                            break;
+                        case 9:
+
+                           // c = ImActivity.class;
+                            c = ImDemoActivity.class;
+                            break;
+                        case 10:
+                            c = RecyclerActivity.class;
+                            break;
+
+                        case 11:
+                            c = CiecleProgressBarActivity.class;
+                            break;
+                        case 12:
+                            c = SlidingPanelActivity.class;
+                            break;
+                        case 13:
+                            c = slidingdrawer.class;
+                            break;
                     }
                     Context context = holder.itemView.getContext();
                     if(c!=null){
@@ -147,23 +187,33 @@ public class LauncherActivity extends AppCompatActivity {
         }
     }
 
+    private static final String[] strs = new String[] {
+            "first", "second", "third", "fourth", "fifth"
+    };
+
     private static class ItemViewHolder extends RecyclerView.ViewHolder {
 
+        private static  Context c;
         public static ItemViewHolder newInstance(ViewGroup parent) {
+            c =parent.getContext();
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.item_list_item, parent, false);
             return new ItemViewHolder(view);
         }
 
         public TextView mTextTitle;
-
+        ListView item_l_rec;
         public ItemViewHolder(View view) {
             super(view);
             mTextTitle = (TextView) view.findViewById(R.id.title);
+            item_l_rec = (ListView)view.findViewById(R.id.item_l_rec);
         }
 
         private void bind(String title) {
             mTextTitle.setText(title);
+            item_l_rec.setAdapter(new ArrayAdapter<String>(c,
+                    android.R.layout.simple_list_item_1, strs));
         }
     }
+
 }

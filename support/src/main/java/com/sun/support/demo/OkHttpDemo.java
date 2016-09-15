@@ -28,6 +28,7 @@ public class OkHttpDemo {
     }
 
     void init(){
+        
 //        OkHttpClient client =
 //                OkHttpUtils.getInstance().setConnectTimeout();
         //client.

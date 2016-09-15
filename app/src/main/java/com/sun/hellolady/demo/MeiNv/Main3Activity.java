@@ -27,7 +27,7 @@ public class Main3Activity extends AppCompatActivity implements SwipeRefreshLayo
     private MyRecAdapter myRecAdapter;
     SwipeRefreshLayout swipeRefreshLayout;
     int pageNu=1;
-    static List<NewImageModel.ImgsEntity> imgList = new ArrayList<NewImageModel.ImgsEntity>();
+    static List<GankMeiziInfo> imgList = new ArrayList<GankMeiziInfo>();
     //static List<DataModel.NewslistEntity> imgListTemp = new ArrayList<DataModel.NewslistEntity>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +68,11 @@ public class Main3Activity extends AppCompatActivity implements SwipeRefreshLayo
     private void LoadData(){
         OkHttpUtils
                 .get()//
-                .url("http://image.baidu.com/data/imgs?col=%E7%BE%8E%E5%A5%B3&tag=%E5%85%A8%E9%83%A8&" +
-                        "pn="+pageNu*20+"" +
-                        "&rn=10&from=1")//
-                //.addParams("num","10")
-                //.addHeader("apikey", "74863574a3c1906a298abcc1f17c5d16")//
+                .url("http://gank.io/api/data/福利/30/"+pageNu)//
                 .build()//
                 .execute(new DataModelCallback() {
                     @Override
-                    public NewImageModel parseNetworkResponse(Response response) throws Exception {
+                    public GankMeiziResult parseNetworkResponse(Response response) throws Exception {
                         return super.parseNetworkResponse(response);
                     }
 
@@ -86,22 +82,8 @@ public class Main3Activity extends AppCompatActivity implements SwipeRefreshLayo
                     }
 
                     @Override
-                    public void onResponse(final NewImageModel response) {
-                         //if(imgList.size()<=0){
-                            imgList.addAll(response.getImgs());
-//                         }else{
-//                            for(int i = imgList.size(), j=1; i<imgList.size(); i++,j++) {
-//                                imgList.set(i, imgList.get(j-1));
-//                           }
-//                            for(int i=0;i<response.getNewslist().size();i++){
-//                                imgList.set(i, response.getNewslist().get(i));
-//                           }
-//                         }
-
-
-
-
-
+                    public void onResponse(final GankMeiziResult response) {
+                        imgList.addAll(response.gankMeizis);
                         myRecAdapter.notifyDataSetChanged();
                         swipeRefreshLayout.setRefreshing(false);
                     }
@@ -140,11 +122,11 @@ public class Main3Activity extends AppCompatActivity implements SwipeRefreshLayo
            // tv = (TextView)v.findViewById(R.id.item_id);
             //v.setOnClickListener();
         }
-        public void OnBind(final MyHowerView holder, final NewImageModel.ImgsEntity data,final int position){
+        public void OnBind(final MyHowerView holder, final GankMeiziInfo data,final int position){
             //tv.setText(data.getTitle());
             holder.iv.setImageDrawable(holder.iv.getContext().getResources().getDrawable(R.drawable.ic_gender_male));
             ImageLoader.loadImage(holder.iv.getContext(),
-                    data.getImageUrl(), holder.iv, null, new ImageLoadingListener() {
+                    data.url, holder.iv, null, new ImageLoadingListener() {
                         @Override
                         public void onSuccess() {
 
@@ -157,51 +139,18 @@ public class Main3Activity extends AppCompatActivity implements SwipeRefreshLayo
                                     "http://d.hiphotos.baidu.com/image/pic/item/0ff41bd5ad6eddc4aa295b333bdbb6fd53663328.jpg", holder.iv, null);
                         }
                     });
-            holder.iv.setImageHeight(data.getImageHeight());
-            holder.iv.setImageWidth(data.getImageWidth());
+           // holder.iv.setImageHeight(data.getImageHeight());
+            //holder.iv.setImageWidth(data.getImageWidth());
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(holder.iv.getContext(), ImageDetail.class);
-                    intent.putExtra("Image_Url", data.getImageUrl());
+                    intent.putExtra("Image_Url", data.desc);
 
 
                     startActivity(intent);
                     overridePendingTransition(0, 0);
-                    //i.overridePendingTransition(0, 0);
 
-//                    ArrayList<ZoomImageModel> zoomImageArrayList = new ArrayList<>();
-//                    for (int i=0;i<imgList.size();i++){
-//                        View child = itemView;
-//
-//                        ZoomImageModel imageScale = new ZoomImageModel();
-//                        if(child != null){
-//                            int[] xy = new int[2];
-//                            child.getLocationInWindow(xy);
-//                            Rect rect = new Rect(xy[0],xy[1],xy[0]+ child.getWidth(),xy[1]+child.getHeight());
-//
-//                            imageScale.rect = rect;
-//                        }else {
-//                            imageScale.rect = new Rect();
-//                        }
-//
-//                        imageScale.smallImagePath = imgList.get(i).getImageUrl();
-//                        imageScale.bigImagePath = imgList.get(i).getImageUrl();
-//                        zoomImageArrayList.add(imageScale);
-//                    }
-//
-//                    PopZoomGallery popZoomGallery = new PopZoomGallery(Main3Activity.this,zoomImageArrayList,new ZoomGalleryAdapter.ZoomGalleryInstantiateItem() {
-//                        @Override
-//                        public void onItemInstantiate(ViewGroup container, int position, PhotoView view, ZoomImageModel model) {
-////                            Picasso.with(Main3Activity.this)
-////                                    .load(model.bigImagePath)
-////                                    .centerCrop()
-////                                    .into(view);
-//
-//                            ImageLoader.loadImage(Main3Activity.this,model.bigImagePath,view);
-//                        }
-//                    });
-//                    popZoomGallery.showPop(itemView, position);
 
 
                 }

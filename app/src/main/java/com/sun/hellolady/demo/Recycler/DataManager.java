@@ -43,8 +43,8 @@ public class DataManager {
                     model.content = originList.get(i);
                     break;
                 case 2:
-                    model.type = "image";
-                    model.content = String.valueOf(R.mipmap.ic_launcher);
+                    model.type = "list";
+                    //model.content = String.valueOf(R.mipmap.ic_launcher);
                     break;
                 default:
             }

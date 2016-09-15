@@ -1,9 +1,14 @@
 package com.support.util.imageloader;
 
-import static android.os.Build.VERSION.SDK_INT;
-
-import java.io.File;
-import java.io.IOException;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.os.StatFs;
+import android.text.TextUtils;
+import android.util.Log;
+import android.widget.ImageView;
 
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Downloader;
@@ -14,15 +19,10 @@ import com.squareup.picasso.RequestCreator;
 import com.squareup.picasso.Transformation;
 import com.squareup.picasso.UrlConnectionDownloader;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Environment;
-import android.os.StatFs;
-import android.text.TextUtils;
-import android.util.Log;
-import android.widget.ImageView;
+import java.io.File;
+import java.io.IOException;
+
+import static android.os.Build.VERSION.SDK_INT;
 
 /**
  * 图片下载工具类

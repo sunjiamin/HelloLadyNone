@@ -37,8 +37,10 @@ public interface AdapterItem<T> {
      * @param t    数据list内部的model
      * @param position 当前adapter调用item的位置
      */
-    void handleData(T t, int position);
+    void handleData(Context c, T t, int position);
 
     void setItemClick(Context c , View v);
+
+    void setItemClick(Context c , View v,T t);
 
 }

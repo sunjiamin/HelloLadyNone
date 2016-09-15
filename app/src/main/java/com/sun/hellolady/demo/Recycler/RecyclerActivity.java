@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.sun.hellolady.R;
 import com.sun.hellolady.demo.Recycler.RecItem.ImageItem;
+import com.sun.hellolady.demo.Recycler.RecItem.ListItem;
 import com.sun.hellolady.demo.Recycler.RecItem.TextItem;
 import com.support.util.MyRecyclerView.CommonRecyclerAdapter;
 import com.support.util.MyRecyclerView.item.AdapterItem;
@@ -38,7 +39,7 @@ public class RecyclerActivity extends AppCompatActivity {
     }
 
     private CommonRecyclerAdapter<DemoModel> getAdapter(List<DemoModel> data) {
-        return new CommonRecyclerAdapter<DemoModel>(data){
+        return new CommonRecyclerAdapter<DemoModel>(data,RecyclerActivity.this){
             @Override
             public Object getItemType(DemoModel demoModel) {
                 return demoModel.type;
@@ -51,9 +52,11 @@ public class RecyclerActivity extends AppCompatActivity {
                     case "text":
                         return new TextItem();
                     case "button":
-                        return new TextItem();
+                        return new ListItem();
                     case "image":
                         return new ImageItem();
+                    case "list":
+                        return new ListItem();
                     default:
                         throw new IllegalArgumentException("不合法的type");
                 }

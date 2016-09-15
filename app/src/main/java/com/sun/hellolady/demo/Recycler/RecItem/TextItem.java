@@ -32,6 +32,7 @@ public class TextItem implements AdapterItem<DemoModel> {
     @Override
     public void bindViews(View root) {
         textView = (TextView) root.findViewById(R.id.textView);
+
     }
 
     @Override
@@ -39,20 +40,35 @@ public class TextItem implements AdapterItem<DemoModel> {
         //Log.d(TextItem.class.getSimpleName(), "setViews--------->");
     }
 
+    DemoModel demoModel;
     @Override
-    public void handleData(DemoModel model, int position) {
+    public void handleData(final Context t,DemoModel model, int position) {
         textView.setText(model.content);
+        demoModel= model;
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(t, demoModel.content+"Child", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
     @Override
     public void setItemClick(final Context c,View root) {
+
         root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(c, "ss", Toast.LENGTH_LONG).show();
+                Toast.makeText(c, demoModel.content, Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void setItemClick(Context c, View v, DemoModel demoModel) {
+
     }
 
 

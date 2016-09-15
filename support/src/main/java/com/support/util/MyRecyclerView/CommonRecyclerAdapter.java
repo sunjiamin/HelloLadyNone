@@ -30,6 +30,17 @@ public class CommonRecyclerAdapter<T> extends RecyclerView.Adapter implements IA
 
     private ItemTypeUtil mUtil = new ItemTypeUtil();
 
+    Context cxt;
+
+    protected CommonRecyclerAdapter(@Nullable List<T> data,Context c) {
+        if (data == null) {
+            data = new ArrayList<>();
+        }
+        mDataList = data;
+        cxt=c;
+    }
+
+
     protected CommonRecyclerAdapter(@Nullable List<T> data) {
         if (data == null) {
             data = new ArrayList<>();
@@ -45,9 +56,12 @@ public class CommonRecyclerAdapter<T> extends RecyclerView.Adapter implements IA
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
         //这里的holder 是上面onCreateViewHolder返回的Holder
         //这里处理数据的绑定 即给各个view附上显示的值  这里封装是在Holder的Item里面处理
-        ((RcvAdapterViewHolder) holder).item.handleData(getConvertedData(mDataList.get(position), mItemType), position);
+        ((RcvAdapterViewHolder) holder).item.handleData(cxt,getConvertedData(mDataList.get(position), mItemType), position);
+
+
     }
 
     @NonNull
@@ -104,12 +118,14 @@ public class CommonRecyclerAdapter<T> extends RecyclerView.Adapter implements IA
 
         protected AdapterItem item;
 
+        protected Context ctx;
+
         public boolean isNew = true; // debug中才用到
 
         protected RcvAdapterViewHolder(Context context, ViewGroup parent, AdapterItem item) {
             //调用父类构造函数初始化itemView
             super(LayoutInflater.from(context).inflate(item.getLayoutResId(), parent, false));
-
+            ctx=context;
             this.item = item;
             this.item.bindViews(itemView);
             this.item.setViews();

@@ -1,4 +1,4 @@
-package com.support.util.common;
+package com.support.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,10 +9,10 @@ import android.view.View;
 import android.view.WindowManager;
 
 /**
- * �����Ļ��صĸ�����
- * 
- * 
- * 
+ * 获得屏幕相关的辅助类
+ *
+ *
+ *
  */
 public class ScreenUtils
 {
@@ -23,8 +23,8 @@ public class ScreenUtils
 	}
 
 	/**
-	 * �����Ļ�߶�
-	 * 
+	 * 获得屏幕高度
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -38,8 +38,8 @@ public class ScreenUtils
 	}
 
 	/**
-	 * �����Ļ���
-	 * 
+	 * 获得屏幕宽度
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -53,8 +53,8 @@ public class ScreenUtils
 	}
 
 	/**
-	 * ���״̬���ĸ߶�
-	 * 
+	 * 获得状态栏的高度
+	 *
 	 * @param context
 	 * @return
 	 */
@@ -77,8 +77,8 @@ public class ScreenUtils
 	}
 
 	/**
-	 * ��ȡ��ǰ��Ļ��ͼ����״̬��
-	 * 
+	 * 获取当前屏幕截图，包含状态栏
+	 *
 	 * @param activity
 	 * @return
 	 */
@@ -98,8 +98,8 @@ public class ScreenUtils
 	}
 
 	/**
-	 * ��ȡ��ǰ��Ļ��ͼ������״̬��
-	 * 
+	 * 获取当前屏幕截图，不包含状态栏
+	 *
 	 * @param activity
 	 * @return
 	 */

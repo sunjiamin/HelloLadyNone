@@ -15,11 +15,11 @@ import okhttp3.Response;
  * 修改时间：3/23/2016 3:13 PM
  * 修改备注：
  */
-public abstract  class DataModelCallback extends Callback<NewImageModel> {
+public abstract  class DataModelCallback extends Callback<GankMeiziResult> {
     @Override
-    public NewImageModel parseNetworkResponse(Response response) throws Exception {
+    public GankMeiziResult parseNetworkResponse(Response response) throws Exception {
         String string = response.body().string();
-        NewImageModel user = new Gson().fromJson(string, NewImageModel.class);
+        GankMeiziResult user = new Gson().fromJson(string, GankMeiziResult.class);
         return user;
     }
 
@@ -29,7 +29,7 @@ public abstract  class DataModelCallback extends Callback<NewImageModel> {
     }
 
     @Override
-    public void onResponse(NewImageModel response) {
+    public void onResponse(GankMeiziResult response) {
 
     }
 }

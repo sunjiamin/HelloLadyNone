@@ -38,7 +38,7 @@ public class ImageItem  implements AdapterItem<DemoModel> {
     }
 
     @Override
-    public void handleData(DemoModel demoModel, int position) {
+    public void handleData(Context t,DemoModel demoModel, int position) {
         image.setImageResource(R.mipmap.ic_launcher);
     }
 
@@ -51,5 +51,10 @@ public class ImageItem  implements AdapterItem<DemoModel> {
                 Toast.makeText(c, "image", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void setItemClick(Context c, View v, DemoModel demoModel) {
+
     }
 }
