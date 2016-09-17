@@ -187,9 +187,7 @@ public class LauncherActivity extends AppCompatActivity {
         }
     }
 
-    private static final String[] strs = new String[] {
-            "first", "second", "third", "fourth", "fifth"
-    };
+
 
     private static class ItemViewHolder extends RecyclerView.ViewHolder {
 
@@ -202,17 +200,17 @@ public class LauncherActivity extends AppCompatActivity {
         }
 
         public TextView mTextTitle;
-        ListView item_l_rec;
+        //ListView item_l_rec;
         public ItemViewHolder(View view) {
             super(view);
             mTextTitle = (TextView) view.findViewById(R.id.title);
-            item_l_rec = (ListView)view.findViewById(R.id.item_l_rec);
+            //item_l_rec = (ListView)view.findViewById(R.id.item_l_rec);
         }
 
         private void bind(String title) {
             mTextTitle.setText(title);
-            item_l_rec.setAdapter(new ArrayAdapter<String>(c,
-                    android.R.layout.simple_list_item_1, strs));
+            //item_l_rec.setAdapter(new ArrayAdapter<String>(c,
+                   // android.R.layout.simple_list_item_1, strs));
         }
     }
 
